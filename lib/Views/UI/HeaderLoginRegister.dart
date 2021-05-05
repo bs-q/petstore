@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:petstore/Views/Utils/CustomHover.dart';
+import 'package:petstore/Views/Utils/TextLink.dart';
 
 class HeaderLoginRegister extends StatefulWidget {
   @override
@@ -26,7 +27,7 @@ class _HeaderLoginRegisterState extends State<HeaderLoginRegister> {
               child: GestureDetector(
                 child: Icon(
                   Icons.account_circle_outlined,
-                  color: icon.textColor,
+                  color: icon.baseColor,
                   size: 32,
                 ),
                 onTap: () => {print('icon clicked')},
@@ -37,34 +38,17 @@ class _HeaderLoginRegisterState extends State<HeaderLoginRegister> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  MouseRegion(
-                    onEnter: (details) =>
-                        {login.incrementEnter(details, setState)},
-                    onHover: (details) =>
-                        {login.updateLocation(details, setState)},
-                    onExit: (details) =>
-                        {login.incrementExit(details, setState)},
-                    child: GestureDetector(
-                      child: Text(
-                        'Login',
-                        style: TextStyle(color: login.textColor),
-                      ),
-                      onTap: () => {print('login clicked')},
-                    ),
+                  TextLink(
+                    customHover: login,
+                    setState: setState,
+                    text: 'Login',
+                    onClick: () => {print('login clicked')},
                   ),
-                  MouseRegion(
-                    onEnter: (details) =>
-                        {register.incrementEnter(details, setState)},
-                    onHover: (details) =>
-                        {register.updateLocation(details, setState)},
-                    onExit: (details) =>
-                        {register.incrementExit(details, setState)},
-                    child: GestureDetector(
-                        child: Text(
-                          'Register',
-                          style: TextStyle(color: register.textColor),
-                        ),
-                        onTap: () => {print('Register clicked')}),
+                  TextLink(
+                    customHover: register,
+                    setState: setState,
+                    text: 'Register',
+                    onClick: () => {print('register cliked')},
                   ),
                 ],
               ),
@@ -75,3 +59,4 @@ class _HeaderLoginRegisterState extends State<HeaderLoginRegister> {
     );
   }
 }
+

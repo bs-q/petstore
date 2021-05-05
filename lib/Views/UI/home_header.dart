@@ -7,17 +7,17 @@ class HomepageHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
       Expanded(
-        flex: 1,
+        flex: 2,
         child: Image.asset(
           'assets/images/logo.png',
         ),
       ),
       Expanded(
         child: HeaderSearchBar(),
-        flex: 4,
+        flex: 9,
       ),
       Expanded(
-        flex: 1,
+        flex: 2,
         child: HeaderLoginRegister(),
       )
     ]);
