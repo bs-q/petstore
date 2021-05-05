@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:petstore/Views/UI/Login.dart';
 import 'package:petstore/Views/UI/home.dart';
 
 void main() {
@@ -11,8 +12,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Pet store',
-      home: Home(),
+      initialRoute: '/',
+      routes: {'/': (context) => Home(), '/login': (context) => Login()},
     );
   }
 }
-

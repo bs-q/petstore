@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:petstore/Constant/MyColor.dart';
 
 class HeaderSearchBar extends StatelessWidget {
   @override
@@ -22,7 +23,7 @@ class HeaderSearchBar extends StatelessWidget {
                 child: ElevatedButton(
                     style: ButtonStyle(
                         backgroundColor:
-                            MaterialStateProperty.all(Color(0xff074EE8))),
+                            MaterialStateProperty.all(MyColor.FONTCOLOR)),
                     onPressed: () => {},
                     child: Row(
                       children: [Icon(Icons.search), Text('Tim kiem')],

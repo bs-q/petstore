@@ -20,18 +20,28 @@ class _HeaderLoginRegisterState extends State<HeaderLoginRegister> {
         alignment: Alignment.topLeft,
         child: Row(
           children: [
-            MouseRegion(
-              onEnter: (details) => {icon.incrementEnter(details, setState)},
-              onHover: (details) => {icon.updateLocation(details, setState)},
-              onExit: (details) => {icon.incrementExit(details, setState)},
-              child: GestureDetector(
-                child: Icon(
-                  Icons.account_circle_outlined,
-                  color: icon.baseColor,
-                  size: 32,
+            PopupMenuButton<String>(
+              itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
+                const PopupMenuItem<String>(
+                  value: 'Value1',
+                  child: Text('Choose value 1'),
                 ),
-                onTap: () => {print('icon clicked')},
+                const PopupMenuItem<String>(
+                  value: 'Value2',
+                  child: Text('Choose value 2'),
+                ),
+                const PopupMenuItem<String>(
+                  value: 'Value3',
+                  child: Text('Choose value 3'),
+                ),
+              ],
+              child: Icon(
+                Icons.account_circle_outlined,
+                color: icon.baseColor,
+                size: 32,
               ),
+              offset: Offset(60, 40),
+              onSelected: (String value) => {print(value)},
             ),
             Padding(
               padding: EdgeInsets.only(left: 10),
@@ -42,7 +52,7 @@ class _HeaderLoginRegisterState extends State<HeaderLoginRegister> {
                     customHover: login,
                     setState: setState,
                     text: 'Login',
-                    onClick: () => {print('login clicked')},
+                    onClick: () => {Navigator.pushNamed(context, '/login')},
                   ),
                   TextLink(
                     customHover: register,
@@ -59,4 +69,3 @@ class _HeaderLoginRegisterState extends State<HeaderLoginRegister> {
     );
   }
 }
-
