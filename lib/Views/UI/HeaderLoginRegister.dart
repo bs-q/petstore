@@ -58,7 +58,7 @@ class _HeaderLoginRegisterState extends State<HeaderLoginRegister> {
                     customHover: register,
                     setState: setState,
                     text: 'Register',
-                    onClick: () => {print('register cliked')},
+                    onClick: () => {Navigator.pushNamed(context, '/login')},
                   ),
                 ],
               ),

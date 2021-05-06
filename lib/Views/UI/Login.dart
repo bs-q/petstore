@@ -1,7 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:petstore/Constant/MyColor.dart';
+import 'package:petstore/Views/Utils/CustomHover.dart';
+import 'package:petstore/Views/Utils/TextLink.dart';
+import 'LoginForm.dart';
+import 'RegisterForm.dart';
 
-class Login extends StatelessWidget {
+class Login extends StatefulWidget {
+  @override
+  _LoginState createState() => _LoginState();
+}
+
+class _LoginState extends State<Login> {
+  final CustomHover login = CustomHover(underlineOnHover: true);
+  final CustomHover register = CustomHover(underlineOnHover: true);
+  bool isLogin = true;
+  final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -13,8 +26,11 @@ class Login extends StatelessWidget {
               Flexible(
                 flex: 1,
                 fit: FlexFit.tight,
-                child: FractionallySizedBox(
-                  child: Image.asset('assets/images/logo.png'),
+                child: GestureDetector(
+                  onTap: () => {Navigator.pushNamed(context, '/')},
+                  child: FractionallySizedBox(
+                    child: Image.asset('assets/images/logo.png'),
+                  ),
                 ),
               ),
               Flexible(
@@ -41,20 +57,28 @@ class Login extends StatelessWidget {
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceAround,
                                   children: [
-                                    Text(
-                                      'Login',
-                                      style: TextStyle(
-                                          decoration: TextDecoration.underline,
-                                          fontSize: 28,
-                                          fontWeight: FontWeight.w400),
-                                    ),
-                                    Text(
-                                      'Register',
-                                      style: TextStyle(
-                                          decoration: TextDecoration.underline,
-                                          fontSize: 28,
-                                          fontWeight: FontWeight.w400),
-                                    ),
+                                    TextLink(
+                                        customHover: login,
+                                        setState: setState,
+                                        text: 'Login',
+                                        fontSize: 28,
+                                        fontWeight: FontWeight.w400,
+                                        onClick: () {
+                                          setState(() {
+                                            isLogin = true;
+                                          });
+                                        }),
+                                    TextLink(
+                                        customHover: register,
+                                        setState: setState,
+                                        text: 'Register',
+                                        fontSize: 28,
+                                        fontWeight: FontWeight.w400,
+                                        onClick: () {
+                                          setState(() {
+                                            isLogin = false;
+                                          });
+                                        }),
                                   ],
                                 ),
                               ),
@@ -62,8 +86,10 @@ class Login extends StatelessWidget {
                           ),
                           Flexible(
                             fit: FlexFit.loose,
-                            child: LoginForm(),
-                            flex: 4,
+                            child: Form(
+                                key: _formKey,
+                                child: isLogin ? LoginForm() : RegisterForm()),
+                            flex: 7,
                           ),
                           Flexible(
                               flex: 1,
@@ -82,12 +108,19 @@ class Login extends StatelessWidget {
                                       },
                                     ),
                                   ),
-                                  onPressed: () => {},
+                                  onPressed: () {
+                                    if (_formKey.currentState!.validate()) {
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(SnackBar(
+                                              content:
+                                                  Text('Processing Data')));
+                                    }
+                                  },
                                   child: Container(
                                     padding: EdgeInsets.symmetric(
                                         horizontal: 20, vertical: 10),
                                     child: Text(
-                                      'Login',
+                                      isLogin ? 'Login' : 'Register',
                                       style: TextStyle(color: Colors.white),
                                     ),
                                   )))
@@ -106,76 +139,6 @@ class Login extends StatelessWidget {
             ],
           ),
         ),
-      ),
-    );
-  }
-}
-
-class RegisterForm extends StatelessWidget {
-  const RegisterForm({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Flexible(child: Placeholder()),
-        Flexible(child: Placeholder()),
-        Flexible(child: Placeholder()),
-        Flexible(child: Placeholder()),
-        Flexible(child: Placeholder()),
-        Flexible(child: Placeholder()),
-      ],
-    );
-  }
-}
-
-class LoginForm extends StatelessWidget {
-  const LoginForm({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.only(bottom: 40),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Flexible(
-            fit: FlexFit.tight,
-            child: FractionallySizedBox(
-              widthFactor: 0.7,
-              child: Align(
-                alignment: Alignment.center,
-                child: TextFormField(
-                  decoration: const InputDecoration(
-                      labelText: 'Email',
-                      labelStyle: TextStyle(color: Colors.black),
-                      fillColor: Colors.white,
-                      border: OutlineInputBorder(),
-                      filled: true),
-                ),
-              ),
-            ),
-          ),
-          Flexible(
-            fit: FlexFit.loose,
-            child: FractionallySizedBox(
-              widthFactor: 0.7,
-              alignment: Alignment.topCenter,
-              child: TextFormField(
-                decoration: const InputDecoration(
-                    labelText: 'Password',
-                    fillColor: Colors.white,
-                    labelStyle: TextStyle(color: Colors.black),
-                    border: OutlineInputBorder(),
-                    filled: true),
-              ),
-            ),
-          ),
-        ],
       ),
     );
   }
