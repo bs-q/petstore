@@ -30,7 +30,6 @@ class _HeaderLoginRegisterState extends State<HeaderLoginRegister> {
               child: Consumer<User>(
                 builder: (context, value, child) {
                   if (value.name == 'quan') {
-                    print(value.name);
                     return Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [

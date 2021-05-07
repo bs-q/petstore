@@ -1,21 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:petstore/Constant/MyColor.dart';
 import 'package:petstore/Models/User.dart';
-import 'package:petstore/Views/Utils/CustomHover.dart';
-import 'package:petstore/Views/Utils/TextLink.dart';
 import 'package:provider/provider.dart';
-import 'LoginForm.dart';
-import 'RegisterForm.dart';
 
-class Login extends StatefulWidget {
+import 'LoginForm.dart';
+
+class StaffLogin extends StatefulWidget {
   @override
-  _LoginState createState() => _LoginState();
+  _StaffLoginState createState() => _StaffLoginState();
 }
 
-class _LoginState extends State<Login> {
-  final CustomHover login = CustomHover(underlineOnHover: true);
-  final CustomHover register = CustomHover(underlineOnHover: true);
-  bool isLogin = true;
+class _StaffLoginState extends State<StaffLogin> {
   final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
@@ -59,28 +54,12 @@ class _LoginState extends State<Login> {
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceAround,
                                   children: [
-                                    TextLink(
-                                        customHover: login,
-                                        setState: setState,
-                                        text: 'Login',
-                                        fontSize: 28,
-                                        fontWeight: FontWeight.w400,
-                                        onClick: () {
-                                          setState(() {
-                                            isLogin = true;
-                                          });
-                                        }),
-                                    TextLink(
-                                        customHover: register,
-                                        setState: setState,
-                                        text: 'Register',
-                                        fontSize: 28,
-                                        fontWeight: FontWeight.w400,
-                                        onClick: () {
-                                          setState(() {
-                                            isLogin = false;
-                                          });
-                                        }),
+                                    Text('Login',
+                                        style: TextStyle(
+                                            fontSize: 28,
+                                            fontWeight: FontWeight.w400,
+                                            decoration:
+                                                TextDecoration.underline)),
                                   ],
                                 ),
                               ),
@@ -88,9 +67,7 @@ class _LoginState extends State<Login> {
                           ),
                           Flexible(
                             fit: FlexFit.loose,
-                            child: Form(
-                                key: _formKey,
-                                child: isLogin ? LoginForm() : RegisterForm()),
+                            child: Form(key: _formKey, child: LoginForm()),
                             flex: 7,
                           ),
                           Flexible(
@@ -110,7 +87,7 @@ class _LoginState extends State<Login> {
                                       },
                                     ),
                                   ),
-                                  onPressed: () async {
+                                  onPressed: () {
                                     if (_formKey.currentState!.validate()) {
                                       ScaffoldMessenger.of(context)
                                           .showSnackBar(SnackBar(
@@ -118,16 +95,13 @@ class _LoginState extends State<Login> {
                                                   Text('Processing Data')));
                                       Provider.of<User>(context, listen: false)
                                           .updateName('ok');
-                                      await Future.delayed(
-                                          Duration(seconds: 2));
-                                      Navigator.of(context).pushNamed('/');
                                     }
                                   },
                                   child: Container(
                                     padding: EdgeInsets.symmetric(
                                         horizontal: 20, vertical: 10),
                                     child: Text(
-                                      isLogin ? 'Login' : 'Register',
+                                      'Login',
                                       style: TextStyle(color: Colors.white),
                                     ),
                                   )))
@@ -136,7 +110,7 @@ class _LoginState extends State<Login> {
                     ),
                   ),
                 ),
-                flex: 4,
+                flex: 3,
               ),
               Flexible(
                 fit: FlexFit.tight,

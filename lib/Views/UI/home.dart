@@ -37,8 +37,10 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     final PageController controller = PageController(initialPage: 0);
+    final ScrollController rawController = ScrollController();
     return Scaffold(
       body: RawScrollbar(
+        controller: rawController,
         thumbColor: Color(0xFF9D9D9D),
         radius: Radius.circular(4),
         thickness: 8,
@@ -88,24 +90,100 @@ class _HomeState extends State<Home> {
                       flex: 1,
                       fit: FlexFit.tight,
                       child: Container(
+                        child: Text(
+                          'THÚ CƯNG',
+                          style: TextStyle(
+                              fontSize: 28,
+                              fontWeight: FontWeight.w300,
+                              color: Colors.white),
+                        ),
+                        padding: EdgeInsets.only(left: 40),
+                        alignment: Alignment.centerLeft,
                         decoration: BoxDecoration(
-                            color: Colors.blue,
+                            color: MyColor.FONTCOLOR,
                             borderRadius: BorderRadius.only(
                                 topLeft: Radius.circular(90),
                                 bottomRight: Radius.circular(90))),
                       ),
                     ),
                     Flexible(
-                      child: Column(),
-                      flex: 5,
+                      child: Container(
+                        margin: EdgeInsets.only(top: 20),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Flexible(
+                              child: Container(
+                                child: Column(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Image.asset('assets/images/rat.png'),
+                                    Padding(
+                                      padding:
+                                          const EdgeInsets.only(left: 10.0),
+                                      child: Text(
+                                        'Hamster Robo',
+                                        style: TextStyle(
+                                            color:
+                                                MyColor.ITEM_NAME_FONT_COLOR),
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding:
+                                          const EdgeInsets.only(left: 10.0),
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text('Tình trạng: Khỏe'),
+                                          Text('Giống: '),
+                                          Text('Tình trạng: Khỏe'),
+                                        ],
+                                      ),
+                                    ),
+                                    TextButton(
+                                        onPressed: () => {},
+                                        child: Text('Liên Hệ'))
+                                  ],
+                                ),
+                                decoration: BoxDecoration(
+                                    color: Colors.lightBlueAccent,
+                                    borderRadius: BorderRadius.circular(10)),
+                              ),
+                            ),
+                            Flexible(
+                              child: Container(
+                                decoration: BoxDecoration(
+                                    color: Colors.lightBlueAccent),
+                              ),
+                            ),
+                            Flexible(
+                              child: Container(
+                                decoration: BoxDecoration(
+                                    color: Colors.lightBlueAccent),
+                              ),
+                            ),
+                            Flexible(
+                              child: Container(
+                                decoration: BoxDecoration(
+                                    color: Colors.lightBlueAccent),
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                      flex: 7,
                     ),
                     Flexible(
-                      child: Column(),
-                      flex: 5,
+                      child: Row(),
+                      flex: 7,
                     )
                   ],
                 ),
-              )
+              ),
+              Container(  )
             ]),
       ),
     );

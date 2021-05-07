@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:petstore/Models/User.dart';
 import 'package:petstore/Views/UI/Login.dart';
+import 'package:petstore/Views/UI/ProductPage.dart';
+import 'package:petstore/Views/UI/StaffLogin.dart';
 import 'package:petstore/Views/UI/home.dart';
 import 'package:provider/provider.dart';
 
 void main() {
-  runApp(MultiProvider(
-    providers: [
-      ChangeNotifierProvider(create: (context)=>User(name: 'quan'))
-    ],
-    child: MyApp()));
+  runApp(MultiProvider(providers: [
+    ChangeNotifierProvider(create: (context) => User(name: 'quan'))
+  ], child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -19,7 +19,12 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Pet store',
       initialRoute: '/',
-      routes: {'/': (context) => Home(), '/login': (context) => Login()},
+      routes: {
+        '/': (context) => Home(),
+        '/login': (context) => Login(),
+        '/staff': (context) => StaffLogin(),
+        '/product': (context) => ProductPage()
+      },
     );
   }
 }
