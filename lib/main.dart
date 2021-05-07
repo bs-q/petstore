@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:petstore/Models/User.dart';
 import 'package:petstore/Views/UI/Login.dart';
 import 'package:petstore/Views/UI/home.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(MultiProvider(
+    providers: [
+      ChangeNotifierProvider(create: (context)=>User(name: 'quan'))
+    ],
+    child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {

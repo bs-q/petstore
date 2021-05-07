@@ -10,12 +10,7 @@ class LoginForm extends StatefulWidget {
 }
 
 class _LoginFormState extends State<LoginForm> {
-  bool _showPassword = false;
-  void _togglevisibility() {
-    setState(() {
-      _showPassword = !_showPassword;
-    });
-  }
+  bool _isObscure = true;
 
   @override
   Widget build(BuildContext context) {
@@ -64,12 +59,16 @@ class _LoginFormState extends State<LoginForm> {
                     return 'Please enter some text';
                   }
                 },
-                obscureText: _showPassword,
+                obscureText: _isObscure,
                 decoration: InputDecoration(
-                    suffixIcon: GestureDetector(
-                      onTap: _togglevisibility,
-                      child: Icon(
-                        _showPassword ? Icons.visibility : Icons.visibility_off,
+                    suffixIcon: IconButton(
+                      onPressed: () {
+                        setState(() {
+                          _isObscure = !_isObscure;
+                        });
+                      },
+                      icon: Icon(
+                        _isObscure ? Icons.visibility : Icons.visibility_off,
                       ),
                     ),
                     labelText: 'Password',

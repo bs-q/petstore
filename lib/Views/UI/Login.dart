@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:petstore/Constant/MyColor.dart';
+import 'package:petstore/Models/User.dart';
 import 'package:petstore/Views/Utils/CustomHover.dart';
 import 'package:petstore/Views/Utils/TextLink.dart';
+import 'package:provider/provider.dart';
 import 'LoginForm.dart';
 import 'RegisterForm.dart';
 
@@ -114,6 +116,8 @@ class _LoginState extends State<Login> {
                                           .showSnackBar(SnackBar(
                                               content:
                                                   Text('Processing Data')));
+                                      Provider.of<User>(context, listen: false)
+                                          .updateName('ok');
                                     }
                                   },
                                   child: Container(

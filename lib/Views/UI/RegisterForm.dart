@@ -10,7 +10,7 @@ class RegisterForm extends StatefulWidget {
 }
 
 class _RegisterFormState extends State<RegisterForm> {
-  bool _showPassword = false;
+  bool _showPassword = true;
   void _togglevisibility() {
     setState(() {
       _showPassword = !_showPassword;
