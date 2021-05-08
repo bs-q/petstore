@@ -36,21 +36,19 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    final PageController controller = PageController(initialPage: 0);
-    final ScrollController rawController = ScrollController();
     return Scaffold(
       body: RawScrollbar(
-        controller: rawController,
         thumbColor: Color(0xFF9D9D9D),
         radius: Radius.circular(4),
         thickness: 8,
         isAlwaysShown: true,
-        child: PageView(
-            pageSnapping: false,
-            controller: controller,
-            scrollDirection: Axis.vertical,
-            children: [
-              Column(
+        child: SingleChildScrollView(
+          scrollDirection: Axis.vertical,
+          child: Column(children: [
+            Container(
+              width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.height,
+              child: Column(
                 children: [
                   Flexible(
                     flex: 1,
@@ -81,7 +79,11 @@ class _HomeState extends State<Home> {
                   ),
                 ],
               ),
-              Padding(
+            ),
+            Container(
+              width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.height,
+              child: Padding(
                 padding: const EdgeInsets.all(20.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -183,8 +185,13 @@ class _HomeState extends State<Home> {
                   ],
                 ),
               ),
-              Container(  )
-            ]),
+            ),
+            Container(
+              width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.height,
+            )
+          ]),
+        ),
       ),
     );
   }

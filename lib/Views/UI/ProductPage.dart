@@ -36,43 +36,92 @@ class _ProductPageState extends State<ProductPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: [
-          Flexible(
-            flex: 1,
-            child: HomepageHeader(),
-            fit: FlexFit.tight,
+      body: RawScrollbar(
+        thumbColor: Color(0xFF9D9D9D),
+        radius: Radius.circular(4),
+        thickness: 8,
+        isAlwaysShown: true,
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Container(
+                width: MediaQuery.of(context).size.width,
+                height: MediaQuery.of(context).size.height,
+                child: Column(
+                  children: [
+                    Flexible(
+                      flex: 1,
+                      child: HomepageHeader(),
+                      fit: FlexFit.tight,
+                    ),
+                    Divider(
+                      color: Colors.black,
+                      thickness: 2,
+                    ),
+                    Flexible(
+                      fit: FlexFit.tight,
+                      child: HomeLinkNavigation(
+                        text: text,
+                        text2: text2,
+                        text3: text3,
+                        text4: text4,
+                        setState: setState,
+                      ),
+                      flex: 1,
+                    ),
+                    Expanded(
+                      child: Container(
+                        margin: EdgeInsets.symmetric(horizontal: 20),
+                        decoration: BoxDecoration(
+                          color: Color(0xFFE4E3E3),
+                        ),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: [
+                            Expanded(
+                                child: FractionallySizedBox(
+                              widthFactor: 0.9,
+                              heightFactor: 0.9,
+                              child: Image.asset(
+                                'assets/images/dog.png',
+                                fit: BoxFit.fill,
+                              ),
+                            )),
+                            Expanded(
+                                child: FractionallySizedBox(
+                              widthFactor: 0.9,
+                              heightFactor: 0.9,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text('data'),
+                                  Row(
+                                    children: [
+                                      Text('type'),
+                                      Text('category'),
+                                    ],
+                                  ),
+                                  Divider(
+                                    thickness: 1,
+                                  ),
+                                  Text('status')
+                                ],
+                              ),
+                            ))
+                          ],
+                        ),
+                      ),
+                      flex: 8,
+                    ),
+                  ],
+                ),
+              ),
+              Container(
+                height: 200,
+              )
+            ],
           ),
-          Divider(
-            color: Colors.black,
-            thickness: 2,
-          ),
-          Flexible(
-            fit: FlexFit.tight,
-            child: HomeLinkNavigation(
-              text: text,
-              text2: text2,
-              text3: text3,
-              text4: text4,
-              setState: setState,
-            ),
-            flex: 1,
-          ),
-          Expanded(
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                Expanded(
-                    child: Image.asset(
-                  'assets/images/dog.png',
-                  fit: BoxFit.fill,
-                )),
-                Expanded(child: Container())
-              ],
-            ),
-            flex: 8,
-          ),
-        ],
+        ),
       ),
     );
   }
