@@ -23,8 +23,26 @@ class _HeaderLoginRegisterState extends State<HeaderLoginRegister> {
         child: Row(
           children: [
             Provider.of<User>(context).name == 'quan'
-                ? NormalAccountButton(icon: icon)
-                : AccountButton(icon: icon),
+                ? MouseRegion(
+                    child: NormalAccountButton(icon: icon),
+                    onEnter: (details) =>
+                        {icon.incrementEnter(details, setState)},
+                    onHover: (details) =>
+                        {icon.updateLocation(details, setState)},
+                    onExit: (details) =>
+                        {icon.incrementExit(details, setState)},
+                  )
+                : Material(
+                    borderRadius: BorderRadius.circular(30),
+                    child: MouseRegion(
+                        onEnter: (details) =>
+                            {icon.incrementEnter(details, setState)},
+                        onHover: (details) =>
+                            {icon.updateLocation(details, setState)},
+                        onExit: (details) =>
+                            {icon.incrementExit(details, setState)},
+                        child: AccountButton(icon: icon)),
+                  ),
             Padding(
               padding: EdgeInsets.only(left: 10),
               child: Consumer<User>(
@@ -86,7 +104,10 @@ class AccountButton extends StatelessWidget {
           child: Text('Đăng xuất'),
         ),
       ],
-      child: NormalAccountButton(icon: icon),
+      child: Material(
+        borderRadius: BorderRadius.circular(0),
+        child: InkWell(child: NormalAccountButton(icon: icon)),
+      ),
       offset: Offset(60, 40),
       onSelected: (String value) {
         if (value == 'logout') {

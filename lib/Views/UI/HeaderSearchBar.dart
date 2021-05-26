@@ -13,8 +13,8 @@ class HeaderSearchBar extends StatelessWidget {
                 child: TextField(
                   decoration: InputDecoration(
                       border: OutlineInputBorder(),
-                      contentPadding: EdgeInsets.symmetric(
-                          horizontal: 7, vertical: 3)),
+                      contentPadding:
+                          EdgeInsets.symmetric(horizontal: 7, vertical: 3)),
                 )),
             Container(
               height: double.infinity,
@@ -24,7 +24,8 @@ class HeaderSearchBar extends StatelessWidget {
                     style: ButtonStyle(
                         backgroundColor:
                             MaterialStateProperty.all(MyColor.FONTCOLOR)),
-                    onPressed: () => {},
+                    onPressed: () =>
+                        {Navigator.pushNamed(context, '/category')},
                     child: Row(
                       children: [Icon(Icons.search), Text('Tim kiem')],
                     )),
@@ -34,4 +35,3 @@ class HeaderSearchBar extends StatelessWidget {
         ));
   }
 }
-

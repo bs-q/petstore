@@ -5,12 +5,12 @@ import 'package:petstore/Views/UI/HomeLinkNavigation.dart';
 import 'package:petstore/Views/UI/HomepageHeader.dart';
 import 'package:petstore/Views/Utils/CustomHover.dart';
 
-class ProductPage extends StatefulWidget {
+class PetPage extends StatefulWidget {
   @override
-  _ProductPageState createState() => _ProductPageState();
+  _PetPageState createState() => _PetPageState();
 }
 
-class _ProductPageState extends State<ProductPage> {
+class _PetPageState extends State<PetPage> {
   final CustomHover text = CustomHover(
       onOutColor: MyColor.FONTCOLOR,
       underlineOnHover: true,
@@ -116,17 +116,10 @@ class _ProductPageState extends State<ProductPage> {
                                     Row(
                                       children: [
                                         Text(
-                                          'type:',
+                                          'Breed:',
                                           style: TextStyle(
                                             fontSize: 20,
                                           ),
-                                        ),
-                                        Container(
-                                          margin: EdgeInsets.only(left: 30),
-                                          child: Text('category:',
-                                              style: TextStyle(
-                                                fontSize: 20,
-                                              )),
                                         ),
                                       ],
                                     ),
@@ -134,129 +127,31 @@ class _ProductPageState extends State<ProductPage> {
                                       color: Color(0xFF000000),
                                       thickness: 1,
                                     ),
-                                    RichText(
-                                      text: TextSpan(
-                                          text: 'status: ',
-                                          style: TextStyle(
-                                              fontSize: 20,
-                                              fontWeight: FontWeight.w700),
-                                          children: [
-                                            TextSpan(
-                                                text: 'Còn hàng',
-                                                style: TextStyle(
-                                                    fontSize: 20,
-                                                    color: Color(0xFF1CB122),
-                                                    fontWeight:
-                                                        FontWeight.w700))
-                                          ]),
-                                    ),
-                                    RichText(
-                                        text: TextSpan(
-                                            text: 'price:  ',
-                                            style: TextStyle(
-                                                fontSize: 20,
-                                                fontWeight: FontWeight.w700),
-                                            children: [
-                                          TextSpan(
-                                              text: '50000',
-                                              style: TextStyle(
-                                                  fontSize: 32,
-                                                  color: Colors.red,
-                                                  fontWeight: FontWeight.w400))
-                                        ])),
                                     Container(
                                       margin:
                                           EdgeInsets.only(top: 30, bottom: 30),
                                       child: Text(
                                           "Female Roborovski Dwarf Hamsters are always up to something and are ideal if you are looking for a pet that's fun to watch, but requires less personal handling."),
                                     ),
-                                    Container(
-                                        margin: EdgeInsets.only(bottom: 10),
-                                        child: Text('Số lượng',
-                                            overflow: TextOverflow.ellipsis)),
-                                    Row(
-                                      children: [
-                                        Container(
-                                          margin: EdgeInsets.only(right: 30),
-                                          width: 172,
+                                    ElevatedButton(
+                                      style: ButtonStyle(
+                                          backgroundColor:
+                                              MaterialStateProperty.all(
+                                                  MyColor.FONTCOLOR)),
+                                      onPressed: () => {},
+                                      child: Container(
+                                          alignment: Alignment.center,
+                                          width: 349,
                                           height: 52,
-                                          decoration: BoxDecoration(
-                                              border: Border.all(
-                                                  color: Color(0xff000000))),
-                                          child: Material(
-                                            child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.spaceAround,
-                                              children: [
-                                                IconButton(
-                                                    color: Color(0xff858585),
-                                                    icon: Icon(Icons.remove),
-                                                    splashRadius: 20,
-                                                    tooltip: 'Bớt số lượng',
-                                                    onPressed: () {
-                                                      setState(() {
-                                                        _quantity--;
-                                                      });
-                                                    }),
-                                                Flexible(
-                                                  child: Center(
-                                                    child: TextField(
-                                                      inputFormatters: [
-                                                        FilteringTextInputFormatter
-                                                            .digitsOnly
-                                                      ],
-                                                      onChanged: (value) {
-                                                        _quantity = int.parse(
-                                                            _controller.text);
-                                                      },
-                                                      textAlign:
-                                                          TextAlign.center,
-                                                      controller: _controller,
-                                                      style: TextStyle(
-                                                        fontWeight:
-                                                            FontWeight.w400,
-                                                        fontSize: 22,
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ),
-                                                IconButton(
-                                                    color: Color(0xff858585),
-                                                    tooltip: 'Thêm số lượng',
-                                                    icon: const Icon(Icons.add),
-                                                    splashRadius: 20,
-                                                    onPressed: () {
-                                                      setState(() {
-                                                        _quantity++;
-                                                      });
-                                                    })
-                                              ],
+                                          child: Text(
+                                            'Liên Hệ',
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.w700,
+                                              fontSize: 24,
                                             ),
-                                          ),
-                                        ),
-                                        Flexible(
-                                          child: ElevatedButton(
-                                            style: ButtonStyle(
-                                                backgroundColor:
-                                                    MaterialStateProperty.all(
-                                                        MyColor.FONTCOLOR)),
-                                            onPressed: () => {},
-                                            child: Container(
-                                                alignment: Alignment.center,
-                                                width: 349,
-                                                height: 52,
-                                                child: Text(
-                                                  'Thêm vào giỏ hàng',
-                                                  style: TextStyle(
-                                                    fontWeight: FontWeight.w700,
-                                                    fontSize: 24,
-                                                  ),
-                                                  textAlign: TextAlign.center,
-                                                )),
-                                          ),
-                                        ),
-                                      ],
-                                    )
+                                            textAlign: TextAlign.center,
+                                          )),
+                                    ),
                                   ],
                                 ),
                               ))
@@ -293,9 +188,9 @@ class _ProductPageState extends State<ProductPage> {
                           border: TableBorder.all(color: Color(0xffAAAAAA)),
                           children: [
                             buildTableRow('Thuộc tính', 'Giá trị'),
-                            buildTableRowItem('Trọng lượng', '50kg'),
-                            buildTableRowItem('Xuất xứ', 'Việt Nam'),
-                            buildTableRowItem('Thương hiệu', 'BQP')
+                            buildTableRowItem('Chủng loài', 'Husky'),
+                            buildTableRowItem('Độ tuổi', '2 tháng'),
+                            buildTableRowItem('Nguồn gốc', 'Việt Nam')
                           ],
                         ),
                       )

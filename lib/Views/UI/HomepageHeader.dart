@@ -8,8 +8,11 @@ class HomepageHeader extends StatelessWidget {
     return Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
       Expanded(
         flex: 2,
-        child: Image.asset(
-          'assets/images/logo.png',
+        child: GestureDetector(
+          onTap: () => Navigator.pushNamed(context, '/'),
+          child: Image.asset(
+            'assets/images/logo.png',
+          ),
         ),
       ),
       Expanded(
