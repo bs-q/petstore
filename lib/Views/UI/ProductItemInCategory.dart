@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:petstore/Constant/MyColor.dart';
 
-class ProductItem extends StatelessWidget {
+class ProductItemInCategory extends StatelessWidget {
   final String imageLink;
   final String description;
   final int itemId;
@@ -9,7 +9,7 @@ class ProductItem extends StatelessWidget {
   final String buttonText;
   final String path;
 
-  const ProductItem(
+  const ProductItemInCategory(
       {required this.imageLink,
       required this.description,
       required this.itemId,
@@ -30,9 +30,7 @@ class ProductItem extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 20.0),
             child: Text(
               itemName,
-              style: TextStyle(
-                  color: MyColor.ITEM_NAME_FONT_COLOR,
-                  fontWeight: FontWeight.w400),
+              style: TextStyle(color: MyColor.ITEM_NAME_FONT_COLOR),
             ),
           ),
           Padding(

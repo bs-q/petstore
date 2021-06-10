@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:petstore/Constant/MyColor.dart';
 import 'package:petstore/Views/UI/HomeLinkNavigation.dart';
 import 'package:petstore/Views/UI/HomepageHeader.dart';
+import 'package:petstore/Views/UI/ProductItemInCategory.dart';
 import 'package:petstore/Views/Utils/CustomHover.dart';
 
 class ProductCategoryPage extends StatefulWidget {
@@ -33,6 +34,8 @@ class _ProductCategoryPageState extends State<ProductCategoryPage> {
       underlineOnHover: true,
       baseColor: MyColor.FONTCOLOR,
       onHoverColor: MyColor.FONTCOLOR);
+  bool isChecked = false;
+
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
@@ -59,10 +62,6 @@ class _ProductCategoryPageState extends State<ProductCategoryPage> {
                         child: HomepageHeader(),
                         fit: FlexFit.tight,
                       ),
-                      Divider(
-                        color: Colors.black,
-                        thickness: 2,
-                      ),
                       Flexible(
                         fit: FlexFit.tight,
                         child: HomeLinkNavigation(
@@ -74,9 +73,154 @@ class _ProductCategoryPageState extends State<ProductCategoryPage> {
                         ),
                         flex: 1,
                       ),
+                      Divider(
+                        color: Colors.black,
+                        thickness: 2,
+                      ),
                     ],
                   ),
                 ),
+                Container(
+                  alignment: Alignment.center,
+                  child: Text(
+                    'Tìm Kiếm Theo Danh Mục',
+                    style: TextStyle(fontWeight: FontWeight.w700, fontSize: 46),
+                  ),
+                ),
+                Container(
+                  height: MediaQuery.of(context).size.height,
+                  child: Row(
+                    children: [
+                      Flexible(
+                        fit: FlexFit.tight,
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: Color(0xffC4C4C4),
+                          ),
+                          child: Container(
+                            padding: EdgeInsets.all(10),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'Loại',
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.w700,
+                                      fontSize: 20),
+                                ),
+                                Container(
+                                  margin: EdgeInsets.symmetric(
+                                      horizontal: 10, vertical: 10),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        '< Thức ăn cho chó',
+                                        style: TextStyle(
+                                            fontSize: 16,
+                                            decoration:
+                                                TextDecoration.underline),
+                                      ),
+                                      Text(
+                                        '< Thức ăn cho mèo',
+                                        style: TextStyle(
+                                            fontSize: 16,
+                                            decoration:
+                                                TextDecoration.underline),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                Text(
+                                  'Loài',
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.w700,
+                                      fontSize: 20),
+                                ),
+                                Container(
+                                  margin: EdgeInsets.symmetric(
+                                      horizontal: 10, vertical: 10),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        '< chó',
+                                        style: TextStyle(
+                                            fontSize: 16,
+                                            decoration:
+                                                TextDecoration.underline),
+                                      ),
+                                      Text(
+                                        '< mèo',
+                                        style: TextStyle(
+                                            fontSize: 16,
+                                            decoration:
+                                                TextDecoration.underline),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                Text(
+                                  'Trạng thái',
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.w700,
+                                      fontSize: 20),
+                                ),
+                                Container(
+                                  margin: EdgeInsets.symmetric(
+                                      horizontal: 10, vertical: 10),
+                                  child: Column(
+                                    children: [
+                                      Row(
+                                        children: [
+                                          Checkbox(
+                                            value: isChecked,
+                                            onChanged: (value) {
+                                              setState(() {
+                                                isChecked = value!;
+                                              });
+                                            },
+                                          ),
+                                          Text(
+                                            '<  Đã hết hàng',
+                                            style: TextStyle(
+                                                fontSize: 16,
+                                                decoration:
+                                                    TextDecoration.underline),
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        flex: 2,
+                      ),
+                      Flexible(
+                        child: GridView.count(
+                          crossAxisCount: 3,
+                          children: [
+                            for (var i = 0; i < 12; i++)
+                              ProductItemInCategory(
+                                  imageLink: 'assets/images/rat.png',
+                                  description:
+                                      "Female Roborovski Dwarf Hamsters are always up to something and are ideal if you are looking for a pet that's fun to watch, but requires less personal handling.",
+                                  itemId: 1,
+                                  itemName: 'Hamster robo',
+                                  buttonText: 'Mua ngay',
+                                  path: '/product')
+                          ],
+                        ),
+                        flex: 8,
+                      )
+                    ],
+                  ),
+                )
               ],
             ),
           ),

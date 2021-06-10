@@ -13,6 +13,7 @@ class _HeaderLoginRegisterState extends State<HeaderLoginRegister> {
   CustomHover login = CustomHover();
   CustomHover register = CustomHover();
   CustomHover icon = CustomHover();
+  CustomHover cartIcon = CustomHover();
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -68,7 +69,15 @@ class _HeaderLoginRegisterState extends State<HeaderLoginRegister> {
                       ],
                     );
                   } else
-                    return Icon(Icons.shopping_cart);
+                    return MouseRegion(
+                      child: CartButton(icon: cartIcon),
+                      onEnter: (details) =>
+                          {cartIcon.incrementEnter(details, setState)},
+                      onHover: (details) =>
+                          {cartIcon.updateLocation(details, setState)},
+                      onExit: (details) =>
+                          {cartIcon.incrementExit(details, setState)},
+                    );
                 },
               ),
             )
@@ -133,6 +142,29 @@ class NormalAccountButton extends StatelessWidget {
       Icons.account_circle_outlined,
       color: icon.baseColor,
       size: 32,
+    );
+  }
+}
+
+class CartButton extends StatelessWidget {
+  const CartButton({
+    Key? key,
+    required this.icon,
+  }) : super(key: key);
+
+  final CustomHover icon;
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        Navigator.pushNamed(context, '/cart');
+      },
+      child: Icon(
+        Icons.shopping_cart,
+        color: icon.baseColor,
+        size: 32,
+      ),
     );
   }
 }

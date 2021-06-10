@@ -47,6 +47,9 @@ flutter:
     - assets/images/logo.png
     - assets/images/dog.png
     - assets/images/rat.png
+    - assets/images/momo.png
+    - assets/images/paypal.png
+
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
   # For details regarding adding assets from package dependencies, see

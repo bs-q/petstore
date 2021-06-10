@@ -10,15 +10,14 @@ class Product extends ChangeNotifier {
   bool status;
   int quantity;
   String image;
-  Product({
-    required this.id,
-    required this.name,
-    required this.description,
-    required this.price,
-    required this.status,
-    required this.quantity,
-    required this.image
-  });
+  Product(
+      {required this.id,
+      required this.name,
+      required this.description,
+      required this.price,
+      required this.status,
+      required this.quantity,
+      required this.image});
 
   Map<String, dynamic> toMap() {
     return {
@@ -39,7 +38,7 @@ class Product extends ChangeNotifier {
       price: map['price'],
       status: map['status'],
       quantity: map['quantity'],
-       image: map['image'],
+      image: map['image'],
     );
   }
 
@@ -47,4 +46,5 @@ class Product extends ChangeNotifier {
 
   factory Product.fromJson(String source) =>
       Product.fromMap(json.decode(source));
+
 }

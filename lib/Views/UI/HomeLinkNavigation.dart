@@ -30,7 +30,7 @@ class HomeLinkNavigation extends StatelessWidget {
             child: TextLink(
               customHover: text,
               setState: setState,
-              text: 'San pham cho cho',
+              text: 'Sản phẩm cho chó',
               onClick: () => {},
               fontSize: 16,
               fontWeight: FontWeight.w700,
@@ -41,7 +41,7 @@ class HomeLinkNavigation extends StatelessWidget {
             child: TextLink(
               customHover: text2,
               setState: setState,
-              text: 'San pham cho meo',
+              text: 'Sản phẩm cho mèo',
               onClick: () => {},
               fontSize: 16,
               fontWeight: FontWeight.w700,
@@ -52,7 +52,7 @@ class HomeLinkNavigation extends StatelessWidget {
             child: TextLink(
               customHover: text3,
               setState: setState,
-              text: 'San pham cho vat nuoi khac',
+              text: 'Sản phẩm cho vật nuôi khác',
               onClick: () => {},
               fontSize: 16,
               fontWeight: FontWeight.w700,
@@ -63,7 +63,7 @@ class HomeLinkNavigation extends StatelessWidget {
             child: TextLink(
               customHover: text4,
               setState: setState,
-              text: 'vat nuoi duoc ua chuong',
+              text: 'Vật nuôi được ưa chuộng',
               onClick: () => {},
               fontSize: 16,
               fontWeight: FontWeight.w700,
