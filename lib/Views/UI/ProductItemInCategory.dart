@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:petstore/Constant/MyColor.dart';
+import 'package:petstore/Models/Product.dart';
 
 class ProductItemInCategory extends StatelessWidget {
   final String imageLink;
@@ -52,7 +53,17 @@ class ProductItemInCategory extends StatelessWidget {
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all(Color(0xFF6891EB)),
                 ),
-                onPressed: () => {Navigator.pushNamed(context, path)},
+                onPressed: () => {
+                      Navigator.pushNamed(context, path,
+                          arguments: Product(
+                              id: itemId,
+                              name: itemName,
+                              description: description,
+                              price: 15,
+                              status: true,
+                              quantity: 12,
+                              image: imageLink))
+                    },
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 16.0),
                   child: Text(

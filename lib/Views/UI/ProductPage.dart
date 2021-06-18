@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:petstore/Constant/MyColor.dart';
+import 'package:petstore/Models/Product.dart';
+import 'package:petstore/Services/CartList.dart';
 import 'package:petstore/Views/UI/HomeLinkNavigation.dart';
 import 'package:petstore/Views/UI/HomepageHeader.dart';
 import 'package:petstore/Views/Utils/CustomHover.dart';
+import 'package:provider/provider.dart';
 
 class ProductPage extends StatefulWidget {
   @override
@@ -38,6 +41,7 @@ class _ProductPageState extends State<ProductPage> {
   TextEditingController _controller = TextEditingController();
   @override
   Widget build(BuildContext context) {
+    final product = ModalRoute.of(context)!.settings.arguments as Product;
     _controller.text = '$_quantity';
     _controller.selection = TextSelection.fromPosition(
         TextPosition(offset: _controller.text.length));
@@ -95,7 +99,7 @@ class _ProductPageState extends State<ProductPage> {
                                 widthFactor: 0.9,
                                 heightFactor: 0.9,
                                 child: Image.asset(
-                                  'assets/images/dog.png',
+                                  product.image,
                                   fit: BoxFit.fill,
                                 ),
                               )),
@@ -107,7 +111,7 @@ class _ProductPageState extends State<ProductPage> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                      'Hamster Robo',
+                                      product.name,
                                       style: TextStyle(
                                         fontSize: 40,
                                         fontWeight: FontWeight.w700,
@@ -142,7 +146,9 @@ class _ProductPageState extends State<ProductPage> {
                                               fontWeight: FontWeight.w700),
                                           children: [
                                             TextSpan(
-                                                text: 'Còn hàng',
+                                                text: product.status
+                                                    ? 'Còn hàng'
+                                                    : 'Hết hàng',
                                                 style: TextStyle(
                                                     fontSize: 20,
                                                     color: Color(0xFF1CB122),
@@ -158,7 +164,7 @@ class _ProductPageState extends State<ProductPage> {
                                                 fontWeight: FontWeight.w700),
                                             children: [
                                           TextSpan(
-                                              text: '50000',
+                                              text: '${product.price}',
                                               style: TextStyle(
                                                   fontSize: 32,
                                                   color: Colors.red,
@@ -167,8 +173,7 @@ class _ProductPageState extends State<ProductPage> {
                                     Container(
                                       margin:
                                           EdgeInsets.only(top: 30, bottom: 30),
-                                      child: Text(
-                                          "Female Roborovski Dwarf Hamsters are always up to something and are ideal if you are looking for a pet that's fun to watch, but requires less personal handling."),
+                                      child: Text(product.name),
                                     ),
                                     Container(
                                         margin: EdgeInsets.only(bottom: 10),
@@ -240,8 +245,15 @@ class _ProductPageState extends State<ProductPage> {
                                                 backgroundColor:
                                                     MaterialStateProperty.all(
                                                         MyColor.FONTCOLOR)),
-                                            onPressed: () => {
-                                              
+                                            onPressed: () {
+                                              setState(() {
+                                                Provider.of<CartList>(context,
+                                                        listen: false)
+                                                    .products
+                                                    .add(product
+                                                      ..quantity = int.parse(
+                                                          _controller.text));
+                                              });
                                             },
                                             child: Container(
                                                 alignment: Alignment.center,

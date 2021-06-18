@@ -147,14 +147,14 @@ class _HomeState extends State<Home> {
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                for (var i = 0; i < 4; i++)
+                                for (var i = 4; i < 8; i++)
                                   Flexible(
                                     child: ProductItem(
-                                      imageLink: 'assets/images/rat.png',
+                                      imageLink: productList.products[i].image,
                                       description:
-                                          'Lorem ipsum dolor sit amet, consec tetur adipiscing elit. Nam condimentum tempus diam, ultricies sollicitudin erat facilisis eget. Vestibulum rhoncus dui vel eros laoreet consectetur. Vivamus eget elementum ligula, vitae pharetra quam. Nullam at ligula sed metu',
-                                      itemId: 1,
-                                      itemName: 'Hamster robo',
+                                          productList.products[i].description,
+                                      itemId: productList.products[i].id,
+                                      itemName: productList.products[i].name,
                                       buttonText: 'Liên Hệ',
                                       path: '/pet',
                                     ),

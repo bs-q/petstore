@@ -1,5 +1,7 @@
+import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:petstore/Models/User.dart';
+import 'package:petstore/Services/CartList.dart';
 import 'package:petstore/Views/Utils/CustomHover.dart';
 import 'package:petstore/Views/Utils/TextLink.dart';
 import 'package:provider/provider.dart';
@@ -104,7 +106,7 @@ class AccountButton extends StatelessWidget {
           value: 'order',
           child: Text('Đơn hàng'),
         ),
-        const PopupMenuItem<String>(
+        PopupMenuItem<String>(
           value: 'profile',
           child: Text('Trang hồ sơ'),
         ),
@@ -121,8 +123,11 @@ class AccountButton extends StatelessWidget {
       onSelected: (String value) {
         if (value == 'logout') {
           Provider.of<User>(context, listen: false).updateName('quan');
+        } else if (value == 'profile') {
+          Navigator.pushNamed(context, '/customer');
+        } else if (value == 'order') {
+          Navigator.pushNamed(context, '/cart');
         }
-        print(value);
       },
     );
   }
@@ -160,10 +165,17 @@ class CartButton extends StatelessWidget {
       onTap: () {
         Navigator.pushNamed(context, '/cart');
       },
-      child: Icon(
-        Icons.shopping_cart,
-        color: icon.baseColor,
-        size: 32,
+      child: Badge(
+        animationType: BadgeAnimationType.scale,
+        badgeContent: Text(Provider.of<CartList>(context, listen: true)
+            .products
+            .length
+            .toString()),
+        child: Icon(
+          Icons.shopping_cart,
+          color: icon.baseColor,
+          size: 32,
+        ),
       ),
     );
   }
